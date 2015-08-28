@@ -1,5 +1,40 @@
+/* Custom Styles */
+
+
+.wide {
+	position: relative;
+	height: 150px;
+	width: 100%;
+}
+
+.wide::after {
+	content: "";
+	background: url('../src/scotland1.jpg');
+	background-size: cover;
+	opacity: 0.4;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	position: absolute;
+	z-index: -1;   
+}
+
+.logo h1 {
+	text-transform: uppercase;
+	text-align: center;
+	color: #FFF;
+}
+
+.margin40 {
+	margin: 2.5em; /* 40px */
+}
+
+
+
+/* Google Maps Styles */
 html, body {
-	height: 100%;
+	height: 85%;
 	margin: 0;
 	padding: 0;
 }
