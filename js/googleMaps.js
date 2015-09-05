@@ -48,6 +48,16 @@ function ViewModel(term) {
             return place.title.toLowerCase().indexOf(search) >= 0;
         });
     }, this);
+
+    self.getFsData = ko.computed(function() {
+		$.ajax(fourSquare_URL, {
+			dataType: 'json',
+			async: true,
+			type: 'GET'
+		}).done(function(data){
+			self.locationsList.push(makeLocationData(data));
+		});
+	});
 }
 ko.applyBindings(new ViewModel(''));
 
