@@ -1,11 +1,13 @@
 // Different Places to show on map
 var fortWilliam = {lat: 56.819, lng: -5.105, title: 'Fort William'}
 var isleOfSkye = {lat: 57.535, lng: -6.226, title: 'Isle Of Skye'}
+var isleOfMull = {lat: 56.439, lng: -6.000, title: 'Isle Of Mull'}
 var glasgow = {lat: 55.864, lng: -4.251, title: 'Glasgow'}
 var edinburgh = {lat: 55.953, lng: -3.188, title: 'Edinburgh'}
 var inverness = {lat: 57.477, lng: -4.224, title: 'Inverness'}
+var aberdeen = {lat: 57.149, lng: -2.094, title: 'Aberdeen'}
 
-var mapPlacesArray = [fortWilliam, isleOfSkye, glasgow, edinburgh, inverness];
+var mapPlacesArray = [fortWilliam, isleOfSkye, glasgow, edinburgh, inverness, isleOfMull, aberdeen];
 
 function ViewModel(term) {
     this.searchQuery = ko.observable(term);
@@ -18,15 +20,18 @@ function ViewModel(term) {
 		if(this.searchQuery != null){
 			var i = 0;
 			var mapPlaceName;
+			var foundPlaces = [];
 			var arrayLength = mapPlacesArray.length;
 
 			for(i; i<arrayLength; i++){
 				mapPlaceName = mapPlacesArray[i].title.toLowerCase();
 
 				if(mapPlaceName.indexOf(this.searchQuery().toLowerCase()) >= -0) {
-	                return mapPlacesArray[i].title;
+	                foundPlaces.push(mapPlacesArray[i].title);
 	            }
 			};
+
+			return foundPlaces;
 		}
     };
 }
