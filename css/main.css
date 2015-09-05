@@ -3,15 +3,15 @@
 
 .wide {
 	position: relative;
-	height: 150px;
+	height: 200px;
 	width: 100%;
 }
 
 .wide::after {
 	content: "";
-	background: url('../src/scotland1.jpg');
+	background: url('../src/IMG_5251.jpg');
 	background-size: cover;
-	opacity: 0.4;
+	opacity: 0.3;
 	top: 0;
 	left: 0;
 	bottom: 0;
@@ -23,19 +23,19 @@
 .logo h1 {
 	text-transform: uppercase;
 	text-align: center;
-	color: #FFF;
+	color: #000;
 }
 
-.margin40 {
-	margin: 2.5em; /* 40px */
+.margin-bottom {
+	margin-bottom: 2.5em; /* 40px */
 }
 
 p::first-letter {
     font-size: 200%;
 }
 
-.green {
-	color: #B5BB9C;
+.white {
+	color: #000;
 }
 
 

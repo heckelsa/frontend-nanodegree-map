@@ -22,25 +22,25 @@
 		</head>
 	<body>
 
-	<div class="wide">
-		<div class="col-xs-4 line"><hr></div>
-		<div class="col-xs-4 logo"><h1>Beautiful Scotland</h1></div>
-		<div class="col-xs-4 line"><hr></div>
+	<div class="wide margin-bottom">
+			<div class="col-xs-4 col-md-offset-4 logo margin-bottom"><h1>Beautiful Scotland</h1></div>
+			<div class="text-center col-md-6 col-md-offset-3 white">Let yourself be shown the many beautiful places of Scotland. Take a look around the map and be inspired by this beautiful country. Find all the mythical places. This will be the next destination of your journey.</div>
 	</div>
-	
-	<div class="container-fluid">
-		<div class="row">
-			<div class="text-center col-md-6 col-md-offset-3">
-				<div class="margin40 green">
-					<p>Scotland. <br />Let yourself be shown the many beautiful places of Scotland. Take a look around the map and be inspired by this beautiful country. Find all the mythical places. This will be the next destination of your journey.</p>
-				</div>
-			</div>
+	<div class="row">
+		<div class="col-md-12">
+			<input data-bind="textInput: searchQuery" />
+			<br />
+			<span data-bind="text: searchOutput"/>
 		</div>
 	</div>
 	
 	<input id="pac-input" class="controls" type="text" placeholder="Search Box">
 	<div id="map"></div>  
+	<div class="row">
+		<div class="col-md-12">
 
+		</div>
+	</div>
 	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="lib/min/bootstrap.min.js"></script>
