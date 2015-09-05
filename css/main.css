@@ -1,54 +1,70 @@
 /* Custom Styles */
-
-
-.wide {
-	position: relative;
-	height: 200px;
-	width: 100%;
+body {
+  background-color: #3f722b;
+  font-family: Roboto;
 }
-
-.wide::after {
-	content: "";
-	background: url('../src/IMG_5251.jpg');
-	background-size: cover;
-	opacity: 0.3;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	position: absolute;
-	z-index: -1;   
-}
-
-.logo h1 {
-	text-transform: uppercase;
-	text-align: center;
-	color: #000;
-}
-
 .margin-bottom {
-	margin-bottom: 2.5em; /* 40px */
+	margin-bottom: 2.5em;
 }
 
-p::first-letter {
-    font-size: 200%;
+h1 {
+  font-weight: 300;
+  color: #FFF;
+  font-size: 24px;
+  margin-left:100px;
 }
 
-.white {
-	color: #000;
+.searchOutput{
+  z-index: 1;
+  position: absolute;
+  left: 88px;
+  top: 100px;
+  margin-top: 10px;
+  margin-left: 12px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  padding: 10px 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
+.searchOutputTitle{
+  font-weight: bold;
+  padding-bottom: 5px;
+  font-size: 18px;
+  color: #3f722b;
+}
+
+.searchOutput ul {
+  padding-left: 10px;
+}
+
+.searchOutput ul li{
+  list-style-type: none;
+  padding: 10px 0;
 }
 
 
 
 /* Google Maps Styles */
 html, body {
-	height: 85%;
+	height: 95%;
 	margin: 0;
 	padding: 0;
 }
 
 #map {
 	height: 100%;
+  border-top: 4px solid #FFF;
+  border-bottom: 4px solid #FFF;
 }
 
 .controls {

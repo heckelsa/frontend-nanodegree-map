@@ -1,41 +1,54 @@
 // Different Places to show on map
-var fortWilliam = {lat: 56.819, lng: -5.105, title: 'Fort William'}
-var isleOfSkye = {lat: 57.535, lng: -6.226, title: 'Isle Of Skye'}
-var isleOfMull = {lat: 56.439, lng: -6.000, title: 'Isle Of Mull'}
-var glasgow = {lat: 55.864, lng: -4.251, title: 'Glasgow'}
-var edinburgh = {lat: 55.953, lng: -3.188, title: 'Edinburgh'}
-var inverness = {lat: 57.477, lng: -4.224, title: 'Inverness'}
-var aberdeen = {lat: 57.149, lng: -2.094, title: 'Aberdeen'}
+var places = [
+	    {
+	    	lat: 56.819, 
+	    	lng: -5.105, 
+	    	title: 'Fort William'
+	    },
+	    {
+	    	lat: 57.535, 
+	    	lng: -6.226, 
+	    	title: 'Isle Of Skye'
+	    },
+	    {
+	    	lat: 56.439, 
+	    	lng: -6.000, 
+	    	title: 'Isle Of Mull'
+	    },
+	    {
+	    	lat: 55.864, 
+	    	lng: -4.251, 
+	    	title: 'Glasgow'
+	    },
+	    {
+	    	lat: 55.953, 
+	    	lng: -3.188, 
+	    	title: 'Edinburgh'
+	    },
+	    {
+	    	lat: 57.477, 
+	    	lng: -4.224, 
+	    	title: 'Inverness'
+	    },
+	    {
+	    	lat: 57.149, 
+	    	lng: -2.094, 
+	    	title: 'Aberdeen'
+	    }
+    ];
 
-var mapPlacesArray = [fortWilliam, isleOfSkye, glasgow, edinburgh, inverness, isleOfMull, aberdeen];
 
 function ViewModel(term) {
-    this.searchQuery = ko.observable(term);
+	// 
+    this.query = ko.observable(term);
 
-    this.searchOutput = ko.pureComputed(function() {
-    	return this.searchWithinMapPlaces();
-    }, this); 
-
-    this.searchWithinMapPlaces = function(){
-		if(this.searchQuery != null){
-			var i = 0;
-			var mapPlaceName;
-			var foundPlaces = [];
-			var arrayLength = mapPlacesArray.length;
-
-			for(i; i<arrayLength; i++){
-				mapPlaceName = mapPlacesArray[i].title.toLowerCase();
-
-				if(mapPlaceName.indexOf(this.searchQuery().toLowerCase()) >= -0) {
-	                foundPlaces.push(mapPlacesArray[i].title);
-	            }
-			};
-
-			return foundPlaces;
-		}
-    };
+    this.places = ko.dependentObservable(function() {
+        var search = this.query().toLowerCase();
+        return ko.utils.arrayFilter(places, function(place) {
+            return place.title.toLowerCase().indexOf(search) >= 0;
+        });
+    }, this);
 }
- 
 ko.applyBindings(new ViewModel(''));
 
 
@@ -67,16 +80,16 @@ function initAutocomplete() {
 	// Set the defined markers on the map
 	function setMarkerOnMap(){
 		var i = 0;
-		var arrayLength = mapPlacesArray.length;
+		var arrayLength = places.length;
 		console.log(i);
 
 		for(i; i<arrayLength; i++){
-			console.log(mapPlacesArray[i].title);
-			setMarker(mapPlacesArray[i]);
+			console.log(places[i].title);
+			setMarker(places[i]);
 		}	
 	}
 
-	function setMarker(place, placeTitle){
+	function setMarker(place){
 		var marker = new google.maps.Marker({
 			position: place,
 			map: map,
