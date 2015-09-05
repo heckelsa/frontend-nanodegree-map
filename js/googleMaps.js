@@ -7,7 +7,7 @@ var inverness = {lat: 57.477, lng: -4.224, title: 'Inverness'}
 
 var mapPlacesArray = [fortWilliam, isleOfSkye, glasgow, edinburgh, inverness];
 
-function MyViewModel(term) {
+function ViewModel(term) {
     this.searchQuery = ko.observable(term);
 
     this.searchOutput = ko.pureComputed(function() {
@@ -21,18 +21,17 @@ function MyViewModel(term) {
 			var arrayLength = mapPlacesArray.length;
 
 			for(i; i<arrayLength; i++){
-				mapPlaceName = mapPlacesArray[i].title;
-				mapPlaceName = mapPlaceName.toLowerCase();
+				mapPlaceName = mapPlacesArray[i].title.toLowerCase();
 
 				if(mapPlaceName.indexOf(this.searchQuery().toLowerCase()) >= -0) {
-	                console.log("FOUND: " + mapPlaceName);
+	                return mapPlacesArray[i].title;
 	            }
 			};
 		}
     };
 }
  
-ko.applyBindings(new MyViewModel('Fort'));
+ko.applyBindings(new ViewModel(''));
 
 
 var map;
@@ -40,24 +39,13 @@ var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var labelIndex = 0;
 
 
+/* ===========================================
+ * ====== G O O G L E   M A P S   A P I ======
+ * ===========================================*/
 function initAutocomplete() {
 	
 	// Initial Marker for the Map
 	var highland = {lat: 55.928, lng: -3.810}
-	
-	// Different Places to show on map
-	var fortWilliam = {lat: 56.819, lng: -5.105}
-	var isleOfSkye = {lat: 57.535, lng: -6.226}
-	var glasgow = {lat: 55.864, lng: -4.251}
-	var edinburgh = {lat: 55.953, lng: -3.188}
-	var inverness = {lat: 57.477, lng: -4.224}
-	
-	// Set Titles for the de
-	var fortWilliamTitle = "Fort William";
-	var isleOfSkyeTitle = "Isle Of Skye";
-	var glasgowTitle = "Glasgow";
-	var edinburghTitle = "Edinburgh";
-	var invernessTitle = "Inverness";
 	
 	// initialize Map to show Scotland
 	map = new google.maps.Map(document.getElementById('map'), {
@@ -72,36 +60,27 @@ function initAutocomplete() {
 	 * ===========================================*/
 	
 	// Set the defined markers on the map
-	var marker = new google.maps.Marker({
-		position: isleOfSkye,
-		map: map,
-		title: isleOfSkyeTitle
-	});
-	
-	var marker = new google.maps.Marker({
-		position: fortWilliam,
-		map: map,
-		title: fortWilliamTitle
-	});
-	
-	var marker = new google.maps.Marker({
-		position: glasgow,
-		map: map,
-		title: glasgowTitle
-	});
-	
-	var marker = new google.maps.Marker({
-		position: edinburgh,
-		map: map,
-		title: edinburghTitle
-	});
-	
-	var marker = new google.maps.Marker({
-		position: inverness,
-		map: map,
-		title: invernessTitle
-	});
-	
+	function setMarkerOnMap(){
+		var i = 0;
+		var arrayLength = mapPlacesArray.length;
+		console.log(i);
+
+		for(i; i<arrayLength; i++){
+			console.log(mapPlacesArray[i].title);
+			setMarker(mapPlacesArray[i]);
+		}	
+	}
+
+	function setMarker(place, placeTitle){
+		var marker = new google.maps.Marker({
+			position: place,
+			map: map,
+			title: place.title
+		});	
+	}
+
+	setMarkerOnMap();
+
 	// add Marker to maps when Map is clicked
 	// This event listener calls addMarker() when the map is clicked.
 	google.maps.event.addListener(map, 'click', function(event) {
