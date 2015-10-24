@@ -1,7 +1,7 @@
 #Map of Edinburgh
 
 ## How to visit
-To visit Map of Edinburgh enter http://github.com/heckelsa in your Browser.
+To visit Map of Edinburgh enter http://heckelsa.github.io/frontend-nanodegree-map/ in your Browser.
 
 If you want to use if local you can download it open the index.html in your browser.
 
