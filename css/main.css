@@ -18,7 +18,7 @@ h1 {
   z-index: 1;
   position: absolute;
   left: 88px;
-  top: 100px;
+
   margin-top: 10px;
   margin-left: 12px;
   border: 1px solid transparent;
@@ -49,7 +49,13 @@ h1 {
 
 .searchOutput ul li{
   list-style-type: none;
-  padding: 10px 0;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.searchOutput ul li:hover{
+  background-color: #d5ddd3;
+  cursor: pointer;
 }
 
 
@@ -83,10 +89,14 @@ html, body {
   font-family: Roboto;
   font-size: 15px;
   font-weight: 300;
-  margin-left: 12px;
+  margin-left: 100px;
   padding: 0 11px 0 13px;
   text-overflow: ellipsis;
   width: 300px;
+}
+
+form {
+  margin-bottom: 20px;
 }
 
 #pac-input:focus {
