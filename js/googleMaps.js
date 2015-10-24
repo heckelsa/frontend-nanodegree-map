@@ -15,27 +15,32 @@ var startMarkers = [
         {
             lat: 55.948,
             lng: -3.198,
-            name: 'Edinburgh Castle'
+            name: 'Edinburgh Castle',
+            address: 'Castlehill<br />Edinburgh<br />EH1 2NG<br />United Kingdom'
         },
         {
             lat: 55.946,
             lng: -3.159,
-            name: 'Holyrood Park '
+            name: 'Holyrood Park',
+            address: 'Queen\'s Dr<br />Edinburgh<br />EH8 8HG<br />United Kingdom'
         },
         {
             lat: 55.952,
             lng: -3.172,
-            name: 'Palace of Holyroodhouse'
+            name: 'Palace of Holyroodhouse',
+            address: 'Canongate<br />Edinburgh<br />EH8 8DX<br />United Kingdom'
         },
         {
             lat: 55.946,
             lng: -3.190,
-            name: 'National Museum of Scotland'
+            name: 'National Museum of Scotland',
+            address: 'Chambers St<br />Edinburgh<br />EH1 1JF<br />United Kingdom'
         },
         {
             lat: 55.964,
             lng: -3.212,
-            name: 'Royal Botanic Garden Edinburgh'
+            name: 'Royal Botanic Garden Edinburgh',
+            address: 'Arboretum Place<br />Edinburgh<br />EH3 5NZ<br />United Kingdom'
         }
     ];
 
@@ -104,7 +109,7 @@ function animateMarker(marker){
 
 // shows a Info Window
 function showInfoWindow(map, marker, place){
-    var infoWindowContent = "<div style='font-weight:bold;'>" + place.name + "</div>";
+    var infoWindowContent = "<div style='font-weight:bold;'>" + place.name + "</div><div>" + place.address + "</div>";
 
     // show InfoWindow
     infoWindow.setContent(infoWindowContent);
@@ -208,12 +213,32 @@ foursquare.search = function(search) {
             // first, clear all current Markers
             clearMarkers();
             var arrayLength = venues.length;
+            var formattedAddressLength;
+            var output;
+            var previousOutput;
+            var address = "";
+            var i = 0;
             //iterates through search Response and adds all elements on the places array.   
-            for (var i = 0; i < arrayLength; i++) {
+            for (i; i < arrayLength; i++) {
+                address = "";
+                formattedAddressLength = "";
+                formattedAddressLength = venues[i].location.formattedAddress.length;
+
+                // takes the formatted Address and saves it as a string
+                for (var j = 0; j < formattedAddressLength; j++) {
+                    output = venues[i].location.formattedAddress[j];
+                    if(previousOutput != output){
+                        // if the previous content is the same as this one it will be ignored to prevent duplicate and unnecessary content
+                        address += output + "<br />";    
+                    }
+                    previousOutput = output;
+                }
+
                 var venueOption = {
                     'lat': venues[i].location.lat, 
                     'lng' : venues[i].location.lng, 
-                    'name': venues[i].name
+                    'name': venues[i].name,
+                    'address' : address
                 }
                 // write each element on places array
                 places.push(venueOption);
