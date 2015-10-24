@@ -31,11 +31,12 @@
 		<span class="searchOutputTitle">Beautiful Places</span>
 		<span>
 			<ul data-bind="template: {name:'place', foreach:places}"> 
-		    </ul> 
+		    </ul>
+
 			<script type="text/html" id="place"> 
-			    <li>
-			        <span class="placeElement" data-bind="text: name"></span>
-			    </li>
+			    <li data-bind="click: clickPlaceMarker">
+                	<span class="placeElement" data-bind="text: name"></span>
+              	</li>
 			</script> 
 		</span>
 	</div>

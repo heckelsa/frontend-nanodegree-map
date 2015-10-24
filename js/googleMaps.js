@@ -58,9 +58,6 @@ function initMap() {
 	// initialize Map to show Edinburgh
 	this.map = new google.maps.Map(document.getElementById('map'), options);
 
-	// Copys the fixed start Markers on the places array
-	setStartMarkersAsPlaces();
-
 	// sets up the start Markers on the map
 	setAllMarkersOnMap(this.map);
 
@@ -86,19 +83,11 @@ function setMarker(place){
 
 	place.marker = marker;
 
-	var infoWindowContent = "<div style='font-weight:bold;'>" + place.name + "</div>";
+	
 
 	// adds Event when a marker is clicked
 	google.maps.event.addListener(marker, 'click', function() {
-		// animate Marker
-		animateMarker(marker);
-
-		// show InfoWindow
-		infoWindow.setContent(infoWindowContent);
-		infoWindow.open(map, this);
-
-		// put selected Marker in middle Position
-		map.panTo(marker.position);
+		activateMarker(marker, map, place);		
 	});
 }
 
@@ -108,6 +97,25 @@ function animateMarker(marker){
 	setTimeout(function() {
 		marker.setAnimation(null);
 	}, 1500);	
+}
+
+function showInfoWindow(map, marker, place){
+	var infoWindowContent = "<div style='font-weight:bold;'>" + place.name + "</div>";
+
+	// show InfoWindow
+	infoWindow.setContent(infoWindowContent);
+	infoWindow.open(map, marker);
+}
+
+function centerMarker(marker){
+	// put selected Marker in middle Position
+	map.panTo(marker.position);
+}
+
+function activateMarker(marker, map, place){
+	animateMarker(marker);
+	showInfoWindow(map, marker, place);
+	centerMarker(marker);
 }
 
 // Adds a marker to the map after a click on the map.
@@ -150,6 +158,12 @@ function setMapOnAll(map) {
 function clearMarkers() {
   setMapOnAll(null);
   places = [];
+}
+
+function clickPlaceMarker(result){
+	google.maps.event.trigger(result.marker, 'click');
+
+	activateMarker(result.marker, map, result.place);
 }
 
 
@@ -215,9 +229,13 @@ function ViewModel(term) {
         if(search != ""){
         	foursquare.search(search);
         }
+
+        if(places == ""){
+			setStartMarkersAsPlaces();
+        }
         
         return ko.utils.arrayFilter(places, function(place) {
-            return place.name.toLowerCase().indexOf(search) >= 0;
+            return place.name.toLowerCase();
         });
     }, this);
 }
