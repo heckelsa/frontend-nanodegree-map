@@ -18,7 +18,7 @@ h1 {
   z-index: 1;
   position: absolute;
   left: 88px;
-
+  top: 130px;
   margin-top: 10px;
   margin-left: 12px;
   border: 1px solid transparent;
@@ -57,6 +57,7 @@ h1 {
   background-color: #d5ddd3;
   cursor: pointer;
 }
+
 
 
 
@@ -121,4 +122,28 @@ form {
 
 #target {
 	width: 345px;
+}
+
+/* Media Queries */
+@media (max-width: 800px) {
+  /* mobile Screen */
+  h1 {
+    margin-left: 2%;
+  }
+
+  #pac-input {
+    margin-left: 2%;
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .searchOutput {
+    position: relative;
+    left: auto;
+    top:  auto;
+    margin-top: 10px;
+    margin-left: 0px;
+    background-color: #fff;
+    width: 100%;
+  }
 }
