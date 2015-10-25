@@ -18,6 +18,29 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="lib/jquery.tabSlideOut.v1.3.js"></script>
+
+        <script type="text/javascript">
+            $(function(){
+                $('.slide-out-div').tabSlideOut({
+                    tabHandle: '.handle',                     //class of the element that will become your tab
+                    pathToTabImage: 'img/beautiful-places.jpg', //path to the image for the tab //Optionally can be set using css
+                    imageHeight: '212px',                     //height of tab image           //Optionally can be set using css
+                    imageWidth: '32px',                       //width of tab image            //Optionally can be set using css
+                    tabLocation: 'left',                      //side of screen where tab lives, top, right, bottom, or left
+                    speed: 300,                               //speed of animation
+                    action: 'click',                          //options: 'click' or 'hover', action to trigger animation
+                    topPos: '130px',                          //position from the top/ use if tabLocation is left or right
+                    leftPos: '20px',                          //position from left/ use if tabLocation is bottom or top
+                    fixedPosition: false                      //options: true makes it stick(fixed position) on scroll
+                });
+
+            });
+
+        </script>
+
         </head>
     <body>
 
@@ -27,22 +50,25 @@
         <input id="pac-input" class="controls" type="search" name="q" placeholder="Search Box" data-bind="value:query, valueUpdate: 'keyup'" />
     </form>
     
-    <div id="map"></div>
-    <div class="searchOutput">
-        <span class="searchOutputTitle">Beautiful Places</span>
-        <span>
-            <ul data-bind="template: {name:'place', foreach:places}">
-            </ul>
+    <div class="slide-out-div" style="z-index:50;">
+        <a class="handle" href="http://link-for-non-js-users.html">Beautiful Places</a>
+        <div>
+            <span class="searchOutputTitle">Beautiful Places</span>
+            <span>
+                <ul data-bind="template: {name:'place', foreach:places}">
+                </ul>
 
-            <script type="text/html" id="place">
-                <li data-bind="click: clickPlaceMarker">
-                    <span class="placeElement" data-bind="text: name"></span>
-                </li>
-            </script>
-        </span>
+                <script type="text/html" id="place">
+                    <li data-bind="click: clickPlaceMarker">
+                        <span class="placeElement" data-bind="text: name"></span>
+                    </li>
+                </script>
+            </span>
+        </div>
     </div>
+    <div id="map"></div>
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
     <script src="lib/min/bootstrap.min.js"></script>
     <script src="lib/knockout-3.3.0.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap" async defer></script>
