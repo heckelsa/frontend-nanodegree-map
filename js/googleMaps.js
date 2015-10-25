@@ -142,7 +142,7 @@ function addMarker(location, map) {
 
 // copyies the start Markers on the places array
 function setStartMarkersAsPlaces(){
-    this.places.push.apply(this.places, this.startMarkers);
+    this.places.push.apply(places, startMarkers);
 }
 
 // creates for all elements on the places array an marker and sets it on the map
@@ -151,7 +151,7 @@ function setAllMarkersOnMap(){
     var placesLength = this.places.length;
     for(i; i<placesLength; i++){
         if(this.places[i]){
-            setMarker(places[i]);
+            setMarker(this.places[i]);
         }
     }
 }
@@ -168,13 +168,29 @@ function setMapOnAll(map) {
 // Removes the markers from the map and clears the places array
 function clearMarkers() {
   setMapOnAll(null);
-  places = [];
+  this.places = [];
 }
 
 // if a element of the list view is clicked, then this function is triggered and activates the related marker
 function clickPlaceMarker(result){
     google.maps.event.trigger(result.marker, 'click');
-    activateMarker(result.marker, map, result.place);
+
+    var place = getPlaceFromName(result.marker);
+    if(place){
+        activateMarker(result.marker, map, place);
+    }
+}
+
+// Checks if the Parameter is listes inside the places array. If it is, then it returns the entry.
+function getPlaceFromName(name){
+    var i = 0;
+    var placesLength = this.places.length;
+    for(i; i<placesLength; i++){
+        if(places[i].name == name){
+            return places[i];
+        }
+    } 
+    return false;
 }
 
 
