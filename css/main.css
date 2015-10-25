@@ -34,6 +34,8 @@ h1 {
   padding: 10px 11px 0 13px;
   text-overflow: ellipsis;
   width: 300px;
+  height: 80%;
+  overflow-y: scroll;
 }
 
 .searchOutputTitle{
@@ -145,5 +147,7 @@ form {
     margin-left: 0px;
     background-color: #fff;
     width: 100%;
+    height: auto;
+    overflow-y: auto;
   }
 }
