@@ -15,4 +15,5 @@ If you want to use if local you can download it open the index.html in your brow
 - Bootstrap (http://getbootstrap.com/)
 - Google Maps API (https://developers.google.com/maps/)
 - Foursquare API (https://developer.foursquare.com/)
+- jQuery TabSlideOut (http://www.building58.com/examples/tabSlideOut.html)
 - Udacity Forum and class material
